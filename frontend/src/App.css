@@ -1,4 +1,5 @@
 .App {
+  color: black;
   text-align: center;
 }
 
@@ -21,4 +22,13 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.error-text {
+  color: red;
+  font-weight: bold;
+}
+
+.pad-top {
+  padding-top: 20px;
 }
