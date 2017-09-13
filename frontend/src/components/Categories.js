@@ -16,8 +16,9 @@ class Categories extends Component {
         const toLink = `/${cat.name}`;
         return (
           <Link
+            role="button" 
             to={toLink}
-            className={this.props.categoryPath === toLink ? 'active item' : 'item'}
+            className={'btn btn-info ' +(this.props.categoryPath === toLink ? 'active item' : 'item')}
             key={cat.name}
           >
             {cat.name}
@@ -33,7 +34,7 @@ class Categories extends Component {
         <div>
           Categories
         </div>
-        <Link to='/' className={this.props.categoryPath === '/' ? 'active item' : 'item'} key='all'>All</Link>
+        <Link to='/' className={'btn btn-default '+(this.props.categoryPath === '/' ? 'active item' : 'item')} key='all'>All</Link>
         {this.displayCategories()}
       </div>
     )
