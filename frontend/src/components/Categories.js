@@ -29,7 +29,7 @@ class Categories extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div>
           Categories
         </div>

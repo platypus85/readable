@@ -94,6 +94,7 @@ class PostForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
+      <div className="container">
       <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
         <div>
           <div>
@@ -125,6 +126,7 @@ class PostForm extends Component {
           <Link to='/' className=''>Cancel</Link>
         </div>
       </form>
+      </div>
     )
   }
 }

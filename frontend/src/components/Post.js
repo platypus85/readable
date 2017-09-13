@@ -83,7 +83,7 @@ class Post extends Component {
     }
 
     return (
-      <div>
+      <div className="container">
         <div>
           <h1>Post Details</h1>
           <div>

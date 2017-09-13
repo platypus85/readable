@@ -41,7 +41,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h2>Posts</h2>
         <div>
           <select value={this.props.postSortOrder} onChange={this.sortChange}>
