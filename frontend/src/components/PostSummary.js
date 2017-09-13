@@ -50,10 +50,12 @@ class PostSummary extends Component {
         <CardBlock>
           <CardTitle>by {author}
             on {getDateString(timestamp)}</CardTitle>
-          <CardText><Voter
+          <CardText>
+            <Voter
             item={this.props.post}
             upVote={this.props.upVote}
-            downVote={this.props.downVote}/></CardText>
+            downVote={this.props.downVote}/>
+            </CardText>
         </CardBlock>
         <CardFooter>
           <Link to={`/edit/post/${id}`} className=''>Edit Post</Link>
