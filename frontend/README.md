@@ -1,4 +1,4 @@
-# "Readable" project
+# Readable frontend
 This React-Redux project has been developed as second project for [Udacity React NanoDegree](https://www.udacity.com/course/react-nanodegree--nd019).
 
 ## Requirements
