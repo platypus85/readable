@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import _ from 'lodash';
-import { connect } from 'react-redux';
-import { fetchCategories } from '../actions';
-import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {fetchCategories} from '../actions';
+import {Link} from 'react-router-dom';
+import {Card, CardTitle, CardText} from 'reactstrap';
 
 class Categories extends Component {
   componentDidMount() {
-    this.props.fetchCategories();
+    this
+      .props
+      .fetchCategories();
   }
 
   displayCategories() {
@@ -16,11 +19,12 @@ class Categories extends Component {
         const toLink = `/${cat.name}`;
         return (
           <Link
-            role="button" 
+            role="button"
             to={toLink}
-            className={'btn btn-info ' +(this.props.categoryPath === toLink ? 'active item' : 'item')}
-            key={cat.name}
-          >
+            className={'btn btn-info ' + (this.props.categoryPath === toLink
+            ? 'active item'
+            : 'item')}
+            key={cat.name}>
             {cat.name}
           </Link>
         );
@@ -31,19 +35,23 @@ class Categories extends Component {
   render() {
     return (
       <div className="container">
-        <div>
-          Categories
-        </div>
-        <Link to='/' className={'btn btn-default '+(this.props.categoryPath === '/' ? 'active item' : 'item')} key='all'>All</Link>
-        {this.displayCategories()}
+        <Card block outline color="secondary">
+          <CardTitle>Categories</CardTitle>
+          <CardText>
+            <Link
+              to='/'
+              className={'btn btn-default ' + (this.props.categoryPath === '/'
+              ? 'active item'
+              : 'item')}
+              key='all'>All</Link>
+            {this.displayCategories()}</CardText>
+        </Card>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  categories: state.categories
-})
+const mapStateToProps = state => ({categories: state.categories})
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -51,7 +59,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

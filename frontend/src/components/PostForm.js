@@ -1,40 +1,68 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import _ from 'lodash';
-import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { createPost, updatePost, fetchCategories, fetchPost } from '../actions';
+import {Field, reduxForm} from 'redux-form';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {createPost, updatePost, fetchCategories, fetchPost} from '../actions';
 import uuid from 'uuid';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from 'reactstrap';
 
 class PostForm extends Component {
   componentDidMount() {
-    this.props.fetchCategories();
+    this
+      .props
+      .fetchCategories();
 
     if (this.props.match.params.id) {
-      this.props.fetchPost(this.props.match.params.id);
+      this
+        .props
+        .fetchPost(this.props.match.params.id);
     }
   }
 
   renderTextField(field) {
-    const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const {
+      meta: {
+        touched,
+        error
+      }
+    } = field;
+    const className = `form-group ${touched && error
+      ? "has-danger"
+      : ""}`;
 
     return (
       <div className={className}>
         <label>{field.label}</label>
         <div className='six wide field'>
-          <input type="text" placeholder={field.placeholder} {...field.input} />
+          <input type="text" placeholder={field.placeholder} {...field.input}/>
         </div>
         <div className="error-text">
-          {touched ? error : ""}
+          {touched
+            ? error
+            : ""}
         </div>
       </div>
     );
   }
 
   renderDropdown(field) {
-    const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const {
+      meta: {
+        touched,
+        error
+      }
+    } = field;
+    const className = `form-group ${touched && error
+      ? "has-danger"
+      : ""}`;
 
     return (
       <div className={className}>
@@ -52,24 +80,35 @@ class PostForm extends Component {
         </select>
 
         <div className="error-text">
-          {touched ? error : ""}
+          {touched
+            ? error
+            : ""}
         </div>
       </div>
     );
   }
 
   renderMarkdownField(field) {
-    const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const {
+      meta: {
+        touched,
+        error
+      }
+    } = field;
+    const className = `form-group ${touched && error
+      ? "has-danger"
+      : ""}`;
 
     return (
       <div className={className}>
         <label>{field.label}</label>
         <div className='eight wide field'>
-          <textarea placeholder={field.placeholder} {...field.input} />
+          <textarea placeholder={field.placeholder} {...field.input}/>
         </div>
         <div className="error-text">
-          {touched ? error : ""}
+          {touched
+            ? error
+            : ""}
         </div>
       </div>
     );
@@ -78,54 +117,65 @@ class PostForm extends Component {
   submitForm(values) {
     if (this.props.initialValues) {
       values.id = this.props.initialValues.id;
-      this.props.updatePost(values, () => {
-        this.props.history.push('/');
-      });
+      this
+        .props
+        .updatePost(values, () => {
+          this
+            .props
+            .history
+            .push('/');
+        });
     } else {
       values.id = uuid.v4();
       values.timestamp = Date.now();
-      this.props.createPost(values, () => {
-        this.props.history.push('/');
-      });
+      this
+        .props
+        .createPost(values, () => {
+          this
+            .props
+            .history
+            .push('/');
+        });
     }
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const {handleSubmit} = this.props;
 
     return (
       <div className="container">
-      <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
-        <div>
-          <div>
-            <div>
-              <div>
-                <Field name='title' placeholder='Title' className='field' component={this.renderTextField} label='Title for Post: ' />
-              </div>
-            </div>
-            <div>
-              <div>
-                <div className='field'>
-                  <Field name='category' className='field' component={this.renderDropdown} label='Category: ' categories={this.props.categories} />
-                </div>
-              </div>
-            </div>
-            <div>
-              <div>
-                <Field name='author' className='field' component={this.renderTextField} placeholder='Author' label='Author: ' />
-              </div>
-            </div>
-            <div>
-              <label>Post Body: </label>
-              <div>
-                <Field name='body' className='field' component={this.renderMarkdownField} placeholder='Body of post. Markdown allowed.' />
-              </div>
-            </div>
-          </div>
+        <Form onSubmit={handleSubmit(this.submitForm.bind(this))}>
+
+          <Field
+            name='title'
+            placeholder='Title'
+            className='field'
+            component={this.renderTextField}
+            label='Title for Post: '/>
+
+          <Field
+            name='category'
+            className='field'
+            component={this.renderDropdown}
+            label='Category: '
+            categories={this.props.categories}/>
+
+          <Field
+            name='author'
+            className='field'
+            component={this.renderTextField}
+            placeholder='Author'
+            label='Author: '/>
+
+          <Field
+            name='body'
+            className='field'
+            component={this.renderMarkdownField}
+            placeholder='Body of post. Markdown allowed.'/>
+
           <button type='submit'>Submit</button>
           <Link to='/' className=''>Cancel</Link>
-        </div>
-      </form>
+        </Form>
       </div>
     )
   }
@@ -157,18 +207,18 @@ function mapStateToProps(state, ownProps) {
   const match = state.posts[ownProps.match.params.id];
 
   return {
-    post: match ? match : null,
+    post: match
+      ? match
+      : null,
     categories: state.categories,
-    initialValues: match ? match : null
+    initialValues: match
+      ? match
+      : null
   }
 }
 
-PostForm = reduxForm({
-  validate,
-  form: 'PostForm',
-  enableReinitialize: true
-})(PostForm);
+PostForm = reduxForm({validate, form: 'PostForm', enableReinitialize: true})(PostForm);
 
-PostForm = connect(mapStateToProps, { createPost, updatePost, fetchCategories, fetchPost })(PostForm);
+PostForm = connect(mapStateToProps, {createPost, updatePost, fetchCategories, fetchPost})(PostForm);
 
 export default PostForm;

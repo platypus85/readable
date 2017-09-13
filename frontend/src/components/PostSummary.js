@@ -5,14 +5,7 @@ import {upVotePost, downVotePost, fetchCommentsForPost, deletePost} from '../act
 import {getDateString} from '../utils/utilities';
 import Voter from './Voter';
 import * as _ from 'lodash';
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardBlock,
-  CardTitle,
-  CardText
-} from 'reactstrap';
+import {Badge, Card, CardHeader, CardFooter, CardBlock} from 'reactstrap';
 
 class PostSummary extends Component {
   getCommentCount() {
@@ -48,24 +41,30 @@ class PostSummary extends Component {
           </Link>
         </CardHeader>
         <CardBlock>
-          <CardTitle>by {author}
-            on {getDateString(timestamp)}</CardTitle>
-          <CardText>
-            <Voter
+          <p>by {author}
+              on {getDateString(timestamp)}</p>
+          <Voter
             item={this.props.post}
             upVote={this.props.upVote}
             downVote={this.props.downVote}/>
-            </CardText>
+            <br/>
+            <br/>
+            <div>
+              <Badge>
+                {commentCount}
+                {commentCount === 1
+                  ? " Comment"
+                  : " Comments"}
+              </Badge>
+            </div>
         </CardBlock>
         <CardFooter>
-          <Link to={`/edit/post/${id}`} className=''>Edit Post</Link>
-          <button onClick={() => this.deleteThisPost()}>Delete</button>
-          <div>
-            {commentCount}
-            {commentCount === 1
-              ? "Comment"
-              : "Comments"}
-          </div>
+
+          <Link to={`/edit/post/${id}`} className='btn btn-secondary'>
+            <i className="fa fa-pencil" aria-hidden="true"></i>&nbsp;Edit Post</Link>
+          <button className='btn btn-secondary' onClick={() => this.deleteThisPost()}>
+            <i className="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</button>
+
         </CardFooter>
       </Card>
 

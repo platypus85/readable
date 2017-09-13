@@ -109,10 +109,10 @@ class Post extends Component {
             ? <div>
                 <div>
                   <select value={this.props.commentSortOrder} onChange={this.sortChange}>
-                    <option value='-voteScore'>Order by Votes</option>
-                    <option value='voteScore'>Order by Votes Ascending</option>
-                    <option value='-timestamp'>Order by Date Newest</option>
-                    <option value='timestamp'>Order by Date Oldest</option>
+                  <option value='-voteScore'>Sort by votes DESC</option>
+                  <option value='voteScore'>Sort by votes ASC</option>
+                  <option value='-timestamp'>Sort by date NEW</option>
+                  <option value='timestamp'>Sort by date OLD</option>
                   </select>
                 </div>
                 <div>

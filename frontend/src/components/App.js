@@ -6,11 +6,7 @@ import '../App.css';
 import PostSummary from './PostSummary';
 import {Link} from 'react-router-dom';
 import sortBy from 'sort-by';
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input} from 'reactstrap';
+import {Form, FormGroup, Input} from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -60,17 +56,16 @@ class App extends Component {
         <h2>Posts</h2>
         <Form>
           <FormGroup>
-            <Label for="exampleSelect">Select</Label>
             <Input
               value={this.props.postSortOrder}
               onChange={this.sortChange}
               type="select"
               name="select"
               id="exampleSelect">
-              <option value='-voteScore'>Order by Votes</option>
-              <option value='voteScore'>Order by Votes Ascending</option>
-              <option value='-timestamp'>Order by Date Newest</option>
-              <option value='timestamp'>Order by Date Oldest</option>
+              <option value='-voteScore'>Sort by votes DESC</option>
+              <option value='voteScore'>Sort by votes ASC</option>
+              <option value='-timestamp'>Sort by date NEW</option>
+              <option value='timestamp'>Sort by date OLD</option>
             </Input>
           </FormGroup>
         </Form>
@@ -83,13 +78,11 @@ class App extends Component {
           </div>
         </div>
         <div>
-          <div>
-            <Link to='/new'>
-              <button>
-                Add a Post
-              </button>
-            </Link>
-          </div>
+          <Link to='/new'>
+            <button className="btn btn-info">
+              Create Post
+            </button>
+          </Link>
         </div>
       </div >
     );
