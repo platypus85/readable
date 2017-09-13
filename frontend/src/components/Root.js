@@ -15,11 +15,11 @@ const Root = ({ store }) => (
     <BrowserRouter>
       <div>
         <Header />
-        <div className="ui two column divided grid">
-          <div className='right floated four wide column' style={{ maxWidth: 250 }}>
+        <div>
+          <div>
             <Categories />
           </div>
-          <div className='ui ten wide column'>
+          <div>
             <Switch>
               <Route exact path='/new' component={PostForm} />
               <Route exact path='/PostDoesNotExist' component={PostDoesNotExist} />

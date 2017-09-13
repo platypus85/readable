@@ -21,21 +21,21 @@ class Comment extends Component {
 
   render() {
     return (
-      <div className='comment'>
-        <a className='avatar'>
-          <i className="id card outline icon"></i>
+      <div>
+        <a>
+          <i></i>
         </a>
-        <div className='content'>
-          <a className='author'>{this.props.comment.author}</a>
-          <div className='metadata'>
-            <div className='date'>{getDateString(this.props.comment.timestamp)}
+        <div>
+          <a>{this.props.comment.author}</a>
+          <div>
+            <div>{getDateString(this.props.comment.timestamp)}
             </div>
           </div>
           <div
-            className='text'
+          
             dangerouslySetInnerHTML={this.displayMarkdown(this.props.comment.body)}
           ></div>
-          <div className='actions'>
+          <div>
             <button onClick={() => this.toggleEdit(this.props.comment.id)} className=''>Edit</button>
             <button onClick={() => this.deleteThisComment()} className=''>Delete</button>
           </div>

@@ -29,8 +29,8 @@ class Categories extends Component {
 
   render() {
     return (
-      <div className='ui secondary vertical menu'>
-        <div className='header item'>
+      <div>
+        <div>
           Categories
         </div>
         <Link to='/' className={this.props.categoryPath === '/' ? 'active item' : 'item'} key='all'>All</Link>

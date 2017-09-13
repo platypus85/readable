@@ -29,19 +29,19 @@ class PostSummary extends Component {
     const { category, id, title, author, timestamp } = this.props.post;
 
     return (     
-      <div className='content'>
+      <div>
 
-        <Link className='header' to={`/${category}/${id}`}>
+        <Link to={`/${category}/${id}`}>
           {title}
         </Link>
-        <div className='meta'>
+        <div>
           <span>
             by {author} on {getDateString(timestamp)}
           </span>
         </div>
         <div>
           <Link to={`/edit/post/${id}`} className=''>Edit Post</Link>
-          <button onClick={() => this.deleteThisPost()} className='negative ui button'>Delete</button>
+          <button onClick={() => this.deleteThisPost()}>Delete</button>
         </div>
         <div>
           {commentCount} {commentCount === 1 ? "Comment" : "Comments"}

@@ -95,8 +95,8 @@ class PostForm extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
-        <div className='ui container'>
-          <div className='ui form'>
+        <div>
+          <div>
             <div>
               <div>
                 <Field name='title' placeholder='Title' className='field' component={this.renderTextField} label='Title for Post: ' />
@@ -104,7 +104,7 @@ class PostForm extends Component {
             </div>
             <div>
               <div>
-                <div className='eight wide field'>
+                <div className='field'>
                   <Field name='category' className='field' component={this.renderDropdown} label='Category: ' categories={this.props.categories} />
                 </div>
               </div>
@@ -121,7 +121,7 @@ class PostForm extends Component {
               </div>
             </div>
           </div>
-          <button type='submit' className='ui primary button'>Submit</button>
+          <button type='submit'>Submit</button>
           <Link to='/' className=''>Cancel</Link>
         </div>
       </form>

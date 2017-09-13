@@ -34,7 +34,7 @@ class App extends Component {
 
     return _.map(orderedMatchingPosts, post => {
       return (
-        <li key={post.id === undefined ? 1 : post.id} className='item'>
+        <li key={post.id === undefined ? 1 : post.id}>
           <PostSummary postId={post.id} onDelete={() => { }} />
         </li>
       );
@@ -46,21 +46,21 @@ class App extends Component {
       <div>
         <h2>Posts</h2>
         <div>
-          <select className='ui dropdown' value={this.props.postSortOrder} onChange={this.sortChange}>
+          <select value={this.props.postSortOrder} onChange={this.sortChange}>
             <option value='-voteScore'>Order by Votes</option>
             <option value='voteScore'>Order by Votes Ascending</option>
             <option value='-timestamp'>Order by Date Newest</option>
             <option value='timestamp'>Order by Date Oldest</option>
           </select>
         </div>
-        <div className='pad-top'>
+        <div>
           <div>
-            <ul className='ui divided items'>
+            <ul >
               {this.displayPosts()}
             </ul>
           </div>
         </div>
-        <div className='pad-top'>
+        <div>
           <div>
             <Link to='/new'>
               <Button>
