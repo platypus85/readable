@@ -6,12 +6,10 @@ import {connect} from 'react-redux';
 import {createPost, updatePost, fetchCategories, fetchPost} from '../actions';
 import uuid from 'uuid';
 import {
-  Button,
   Form,
   FormGroup,
   Label,
-  Input,
-  FormText
+  Input
 } from 'reactstrap';
 
 class PostForm extends Component {
@@ -34,22 +32,17 @@ class PostForm extends Component {
         error
       }
     } = field;
-    const className = `form-group ${touched && error
-      ? "has-danger"
-      : ""}`;
 
     return (
-      <div className={className}>
-        <label>{field.label}</label>
-        <div className='six wide field'>
-          <input type="text" placeholder={field.placeholder} {...field.input}/>
-        </div>
+      <FormGroup>
+        <Label>{field.label}</Label>
+        <Input type="text" placeholder={field.placeholder} {...field.input}/>
         <div className="error-text">
           {touched
             ? error
             : ""}
         </div>
-      </div>
+      </FormGroup>
     );
   }
 
@@ -60,15 +53,11 @@ class PostForm extends Component {
         error
       }
     } = field;
-    const className = `form-group ${touched && error
-      ? "has-danger"
-      : ""}`;
 
     return (
-      <div className={className}>
-        <label>{field.label}</label>
-
-        <select className='ui dropdown' {...field.input}>
+      <FormGroup>
+        <Label>{field.label}</Label>
+        <Input type="select" className='ui dropdown' {...field.input}>
           <option value=''>Select a Category</option>
           {_.map(field.categories, cats => {
             return (_.map(cats, cat => {
@@ -77,14 +66,13 @@ class PostForm extends Component {
               );
             }));
           })}
-        </select>
-
+        </Input>
         <div className="error-text">
           {touched
             ? error
             : ""}
         </div>
-      </div>
+      </FormGroup>
     );
   }
 
@@ -95,22 +83,17 @@ class PostForm extends Component {
         error
       }
     } = field;
-    const className = `form-group ${touched && error
-      ? "has-danger"
-      : ""}`;
 
     return (
-      <div className={className}>
-        <label>{field.label}</label>
-        <div className='eight wide field'>
-          <textarea placeholder={field.placeholder} {...field.input}/>
-        </div>
+      <FormGroup>
+        <Label>{field.label}</Label>
+        <Input type="textarea" placeholder={field.placeholder} {...field.input}/>
         <div className="error-text">
           {touched
             ? error
             : ""}
         </div>
-      </div>
+      </FormGroup>
     );
   }
 
@@ -168,13 +151,14 @@ class PostForm extends Component {
             label='Author: '/>
 
           <Field
+            label='Content: '
             name='body'
             className='field'
             component={this.renderMarkdownField}
             placeholder='Body of post. Markdown allowed.'/>
 
-          <button type='submit'>Submit</button>
-          <Link to='/' className=''>Cancel</Link>
+          <button className='btn btn-success'type='submit'>Submit</button>
+          <Link className='btn btn-danger' to='/'>Cancel</Link>
         </Form>
       </div>
     )
@@ -185,11 +169,11 @@ function validate(values) {
   const errors = {};
 
   if (!values.title) {
-    errors.title = 'Please enter a Title';
+    errors.title = 'Please, enter a title';
   }
 
   if (!values.category) {
-    errors.category = 'Select a Category'
+    errors.category = 'Select a category'
   }
 
   if (!values.author) {
@@ -197,7 +181,7 @@ function validate(values) {
   }
 
   if (!values.body) {
-    errors.body = 'A Post Body is needed';
+    errors.body = 'Content is needed';
   }
 
   return errors;

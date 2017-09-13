@@ -41,8 +41,7 @@ class PostSummary extends Component {
           </Link>
         </CardHeader>
         <CardBlock>
-          <p>by {author}
-              on {getDateString(timestamp)}</p>
+          <p>By {author} on {getDateString(timestamp)}</p>
           <Voter
             item={this.props.post}
             upVote={this.props.upVote}

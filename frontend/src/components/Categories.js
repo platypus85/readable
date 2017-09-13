@@ -36,7 +36,7 @@ class Categories extends Component {
     return (
       <div className="container">
         <Card block outline color="secondary">
-          <CardTitle>Categories</CardTitle>
+          <CardTitle>Post Categories</CardTitle>
           <CardText>
             <Link
               to='/'

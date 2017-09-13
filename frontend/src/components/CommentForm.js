@@ -3,6 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {addComment, editComment, toggleCommentEdit} from '../actions';
 import uuid from 'uuid';
+import {FormGroup, Label, Input} from 'reactstrap';
 
 class CommentForm extends Component {
   renderTextField(field) {
@@ -12,26 +13,21 @@ class CommentForm extends Component {
         error
       }
     } = field;
-    const className = `form-group ${touched && error
-      ? 'has-danger'
-      : ''}`;
-
+    
     return (
-      <div className={className}>
-        <label>{field.label}</label>
-        <div className='field'>
-          <input
+      <FormGroup>
+        <Label>{field.label}</Label>
+        <Input 
             className='form-control'
             type='text'
             placeholder={field.placeholder}
             {...field.input}/>
-        </div>
         <div className='error-text'>
           {touched
             ? error
             : ''}
         </div>
-      </div>
+      </FormGroup>
     );
   }
 
@@ -42,22 +38,18 @@ class CommentForm extends Component {
         error
       }
     } = field;
-    const className = `form-group ${touched && error
-      ? 'has-danger'
-      : ''}`;
+    
 
     return (
-      <div className={className}>
-        <label>{field.label}</label>
-        <div className='field'>
-          <textarea placeholder={field.placeholder} {...field.input}/>
-        </div>
+      <FormGroup>
+        <Label>{field.label}</Label>
+        <Input type="textarea"placeholder={field.placeholder} {...field.input}/>
         <div className='error-text'>
           {touched
             ? error
             : ''}
         </div>
-      </div>
+      </FormGroup>
     );
   }
 
@@ -107,10 +99,11 @@ class CommentForm extends Component {
               component={this.renderMarkdownField}
               label='Comment: '/>
           </div>
-          <button type='submit'>
+          <button className='btn btn-success' type='submit'>
             Submit
           </button>
           <button
+            className='btn btn-danger'
             type='button'
             disabled={submitting}
             onClick={() => this.props.toggleCommentEdit('')}>

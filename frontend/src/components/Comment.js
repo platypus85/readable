@@ -28,7 +28,7 @@ class Comment extends Component {
 
   render() {
     return (
-      <Card>
+      <Card className='comment'>
         <CardHeader>
           by {this.props.comment.author}
         </CardHeader>
