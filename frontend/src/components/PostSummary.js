@@ -1,59 +1,72 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { upVotePost, downVotePost, fetchCommentsForPost, deletePost } from '../actions';
-import { getDateString } from '../utils/utilities';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {upVotePost, downVotePost, fetchCommentsForPost, deletePost} from '../actions';
+import {getDateString} from '../utils/utilities';
 import Voter from './Voter';
 import * as _ from 'lodash';
+import {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardBlock,
+  CardTitle,
+  CardText
+} from 'reactstrap';
 
 class PostSummary extends Component {
   getCommentCount() {
     const commentArray = _.values(this.props.comments);
-    return commentArray.filter(comment =>
-      comment.parentId === this.props.post.id).length;
+    return commentArray
+      .filter(comment => comment.parentId === this.props.post.id)
+      .length;
   }
 
   deleteThisPost() {
     console.log('Deleting post ' + this.props.post.id);
-    this.props.delete(this.props.post.id,
-      () => this.props.onDelete()
-    );
+    this
+      .props
+      .delete(this.props.post.id, () => this.props.onDelete());
   }
 
   componentDidMount() {
-    this.props.fetchCommentsForPost(this.props.post.id);
+    this
+      .props
+      .fetchCommentsForPost(this.props.post.id);
   }
 
   render() {
     const commentCount = this.getCommentCount();
-    const { category, id, title, author, timestamp } = this.props.post;
+    const {category, id, title, author, timestamp} = this.props.post;
 
-    return (     
-      <div>
+    return (
 
-        <Link to={`/${category}/${id}`}>
-          {title}
-        </Link>
-        <div>
-          <span>
-            by {author} on {getDateString(timestamp)}
-          </span>
-        </div>
-        <div>
-          <Link to={`/edit/post/${id}`} className=''>Edit Post</Link>
-          <button onClick={() => this.deleteThisPost()}>Delete</button>
-        </div>
-        <div>
-          {commentCount} {commentCount === 1 ? "Comment" : "Comments"}
-        </div>
-        <div>
-          <Voter
+      <Card>
+        <CardHeader>
+          <Link to={`/${category}/${id}`}>
+            {title}
+          </Link>
+        </CardHeader>
+        <CardBlock>
+          <CardTitle>by {author}
+            on {getDateString(timestamp)}</CardTitle>
+          <CardText><Voter
             item={this.props.post}
             upVote={this.props.upVote}
-            downVote={this.props.downVote}
-          />
-        </div>
-      </div>
+            downVote={this.props.downVote}/></CardText>
+        </CardBlock>
+        <CardFooter>
+          <Link to={`/edit/post/${id}`} className=''>Edit Post</Link>
+          <button onClick={() => this.deleteThisPost()}>Delete</button>
+          <div>
+            {commentCount}
+            {commentCount === 1
+              ? "Comment"
+              : "Comments"}
+          </div>
+        </CardFooter>
+      </Card>
+
     )
   }
 }
@@ -61,7 +74,7 @@ class PostSummary extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     post: state.posts[ownProps.postId],
-    comments: state.comments,
+    comments: state.comments
   }
 }
 
@@ -74,7 +87,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostSummary);
+export default connect(mapStateToProps, mapDispatchToProps)(PostSummary);

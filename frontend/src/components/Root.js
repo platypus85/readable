@@ -6,7 +6,6 @@ import Categories from './Categories';
 import Post from './Post';
 import PostForm from './PostForm';
 import Header from './Header';
-import Footer from './Footer';
 import NoSuchRoute from './NoSuchRoute';
 import PostDoesNotExist from './PostDoesNotExist';
 
@@ -32,7 +31,6 @@ const Root = ({ store }) => (
             </Switch>
           </div>
         </div>
-        <Footer />
       </div>
     </BrowserRouter>
   </Provider>
