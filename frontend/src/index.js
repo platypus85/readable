@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers';
 import promise from 'redux-promise';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const logger = store => next => action => {
   console.group(action.type);
@@ -24,7 +25,7 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Root store={store} />, 
+  <MuiThemeProvider><Root store={store} /></MuiThemeProvider>, 
   document.getElementById('root'));
 registerServiceWorker();
 
