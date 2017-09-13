@@ -77,7 +77,7 @@ class App extends Component {
 
           </div>
         </div>
-        <div>
+        <div className='page-action'>
           <Link to='/new'>
             <button className="btn btn-info">
               Create Post

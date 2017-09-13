@@ -9,6 +9,7 @@ import PostDoesNotExist from './PostDoesNotExist';
 import PostSummary from './PostSummary';
 import Remarkable from 'remarkable';
 import sortBy from 'sort-by';
+import { Input} from 'reactstrap';
 
 class Post extends Component {
   constructor(props) {
@@ -107,25 +108,30 @@ class Post extends Component {
             .keys(this.props.comments)
             .length > 0
             ? <div>
-                <div>
-                  <select value={this.props.commentSortOrder} onChange={this.sortChange}>
-                  <option value='-voteScore'>Sort by votes DESC</option>
-                  <option value='voteScore'>Sort by votes ASC</option>
-                  <option value='-timestamp'>Sort by date NEW</option>
-                  <option value='timestamp'>Sort by date OLD</option>
-                  </select>
-                </div>
+            <Input
+            value={this.props.postSortOrder}
+            onChange={this.sortChange}
+            type="select"
+            name="select"
+            id="exampleSelect">
+            <option value='-voteScore'>Sort by votes DESC</option>
+            <option value='voteScore'>Sort by votes ASC</option>
+            <option value='-timestamp'>Sort by date NEW</option>
+            <option value='timestamp'>Sort by date OLD</option>
+          </Input>
                 <div>
                   {this.displayComments()}
                 </div>
               </div>
             : <div>
-              <h3>No Comments Exist for Post</h3>
+              <h5>Comments not found.</h5>
             </div>}
-          <div>
+          <div className='page-action'>
             {this.props.commentToEdit === 'new'
               ? <CommentForm parentId={post.id} heading='Add a Comment'/>
-              : <button onClick={() => this.props.toggleCommentEdit('new')}>
+              : <button
+                className="btn btn-info"
+                onClick={() => this.props.toggleCommentEdit('new')}>
                 Add a Comment
               </button>
 }
