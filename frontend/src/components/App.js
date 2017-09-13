@@ -6,8 +6,6 @@ import '../App.css';
 import PostSummary from './PostSummary';
 import { Link } from 'react-router-dom';
 import sortBy from 'sort-by';
-import FlatButton from 'material-ui/FlatButton';
-
 
 class App extends Component {
   constructor(props) {
@@ -63,9 +61,9 @@ class App extends Component {
         <div>
           <div>
             <Link to='/new'>
-              <FlatButton>
+              <button>
                 Add a Post
-              </FlatButton>
+              </button>
             </Link>
           </div>
         </div>
