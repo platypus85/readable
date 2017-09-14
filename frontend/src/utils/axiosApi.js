@@ -1,5 +1,5 @@
 import axios from 'axios';
-const ROOT_URL = 'http://localhost:5001';
+const ROOT_URL = `${process.env.REACT_APP_BACKEND || 'http://localhost:3001'}`;
 
 const headers = {
   'Accept': 'application/json',
@@ -8,23 +8,23 @@ const headers = {
 
 // Posts
 export const fetchPosts = () => {
-  const request = axios.get(`${ROOT_URL}/posts`, { headers });
+  const request = axios.get(`${ROOT_URL}/posts`, { headers, credentials: 'include' });
   return request;
 }
 
 export const fetchPostsForCategory = (category) => {
-  const request = axios.get(`${ROOT_URL}/${category}/posts`, { headers });
+  const request = axios.get(`${ROOT_URL}/${category}/posts`, { headers, credentials: 'include' });
   return request;
 }
 
 export const fetchPost = (id) => {
-  const request = axios.get(`${ROOT_URL}/posts/${id}`, { headers });
+  const request = axios.get(`${ROOT_URL}/posts/${id}`, { headers, credentials: 'include' });
   return request;
 }
 
 export const addPost = (post, callback) => {
   const request = axios
-    .post(`${ROOT_URL}/posts`, post, { headers })
+    .post(`${ROOT_URL}/posts`, post, { headers, credentials: 'include' })
     .then(() => callback());
 
   return request;
@@ -32,7 +32,7 @@ export const addPost = (post, callback) => {
 
 export const updatePost = (post, callback) => {
   const request = axios
-    .put(`${ROOT_URL}/posts/${post.id}`, post, { headers })
+    .put(`${ROOT_URL}/posts/${post.id}`, post, { headers, credentials: 'include' })
     .then(() => callback());
 
   return request;
@@ -42,14 +42,14 @@ export const voteOnPost = (id, option) => {
   const request = axios
     .post(`${ROOT_URL}/posts/${id}`,
       { option },
-      { headers });
+      { headers, credentials: 'include' });
 
   return request;
 }
 
 export const deletePost = (id, callback) => {
   const request = axios
-    .delete(`${ROOT_URL}/posts/${id}`, { headers })
+    .delete(`${ROOT_URL}/posts/${id}`, { headers, credentials: 'include' })
     .then(() => callback());
 
   return request;
@@ -57,43 +57,43 @@ export const deletePost = (id, callback) => {
 
 // Categories
 export const fetchCategories = () => {
-  const request = axios.get(`${ROOT_URL}/categories`, { headers });
+  const request = axios.get(`${ROOT_URL}/categories`, { headers , credentials: 'include'});
   return request;
 }
 
 // Comments
 export const fetchCommentsForPost = (postId) => {
-  const request = axios.get(`${ROOT_URL}/posts/${postId}/comments`, { headers });
+  const request = axios.get(`${ROOT_URL}/posts/${postId}/comments`, { headers, credentials: 'include' });
   return request;
 }
 
 export const fetchComment = (id) => {
-  const request = axios.get(`${ROOT_URL}/comments/${id}`, { headers });
+  const request = axios.get(`${ROOT_URL}/comments/${id}`, { headers, credentials: 'include' });
   return request;
 }
 
 export const postComment = (comment) => {
-  const request = axios.post(`${ROOT_URL}/comments`, comment, { headers });
+  const request = axios.post(`${ROOT_URL}/comments`, comment, { headers, credentials: 'include' });
   return request;
 }
 
 export const voteOnComment = (id, option) => {
   const request = axios
-    .post(`${ROOT_URL}/comments/${id}`, { option }, { headers });
+    .post(`${ROOT_URL}/comments/${id}`, { option }, { headers, credentials: 'include' });
 
   return request;
 }
 
 export const updateComment = (comment) => {
   const request = axios
-    .put(`${ROOT_URL}/comments/${comment.id}`, comment, { headers });
+    .put(`${ROOT_URL}/comments/${comment.id}`, comment, { headers, credentials: 'include' });
 
   return request;
 }
 
 export const deleteComment = (id) => {
   const request = axios
-    .delete(`${ROOT_URL}/comments/${id}`, { headers });
+    .delete(`${ROOT_URL}/comments/${id}`, { headers, credentials: 'include' });
     
   return request;
 }
